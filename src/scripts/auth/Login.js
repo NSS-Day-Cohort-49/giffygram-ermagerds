@@ -12,12 +12,13 @@ document.addEventListener("click", clickEvent => {
         for (const user of userState) {
             if (user.email === email && user.password === password) {
                 foundUser = user
+                document.dispatchEvent(new CustomEvent("stateChanged"))
             }
         }
 
         if (foundUser !== null) {
             localStorage.setItem("gg_user", foundUser.id)
-            document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
+            document.dispatchEvent(new CustomEvent("stateChanged"))
         }
     }
 })
