@@ -6,7 +6,7 @@ const API = "http://localhost:3000"
 const applicationState = {
     currentUser: {},
     feed: {
-        chosenUser: 1,
+        chosenUser: null,
         displayFavorites: false,
         displayMessages: false
     },
