@@ -126,7 +126,7 @@ export const setDisplayFavorites = () => {
     if(applicationState.feed.displayFavorites === true) {
         applicationState.feed.displayFavorites = false;
     } 
-    if(applicationState.feed.displayFavorites === false) {
+    else if(applicationState.feed.displayFavorites === false) {
         applicationState.feed.displayFavorites = true;
     }
 }
