@@ -105,9 +105,11 @@ export const getOnlyFavorites = () => {
         )
         const favoritePosts = []
         for(const like of findLikes) {
-        const thisFavorite = (applicationState.posts.find(post => post.id === like.postId))
+        const thisFavorite = applicationState.posts.find(post => post.id === like.postId)
+        if (thisFavorite) {
         favoritePosts.push(thisFavorite)
         }
+    }
         return favoritePosts
     }
 

@@ -1,4 +1,4 @@
-import { sendLikes, getLikes, getOnlyFavorites, getPosts } from '../data/provider.js';
+import { sendLikes, getOnlyFavorites, getUsers } from '../data/provider.js';
 
 document.addEventListener('click', click => {
     if (click.target.id.startsWith("favorite")) {
@@ -20,26 +20,39 @@ document.addEventListener('click', click => {
 
 export const postFavorites  = () => {
     const favorites = getOnlyFavorites()
-
+    const users = getUsers()
     const favoritesHTML = `<ul>${favorites.map(
  
         (favorite) => {
 
-            // const foundLikes = likes.find(
-            //     (like) => {
-            //         return like.id === parseInt(favorite.userId)
-            //     }
-            // )
+            const foundUser = users.find(
+                (user) => {
+                    return user.id === parseInt(favorite.userId)
+                }
+            )
            return `<li>
            ${favorite.title}<br>
            <img src ="${favorite.imageUrl}" alt="${favorite.description}">
            <br>
-           Posted By ${foundLikes.name} On ${new Date(favorite.timeStamp).toLocaleDateString()}
+           Posted By ${foundUser.name} On ${new Date(favorite.timeStamp).toLocaleDateString()}
         <div id="field" class="field">
             <button id="favorite">Favorite</button>
         </div>
+        <br>
+        <button class="favorite__delete"
+                id="favorite--${request.id}">
+            Delete Favorite
+        </button>
+    </li>
         `
         }).join("")}</li>
         </ul>`
         return favoritesHTML
  }
+
+ document.addEventListener("click", click => {
+    if (click.target.id.startsWith("favorite--")) {
+        const [,favoriteId] = click.target.id.split("--")
+        deleteRequest(parseInt(favoriteId))
+    }
+})

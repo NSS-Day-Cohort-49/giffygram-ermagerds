@@ -1,4 +1,4 @@
-import { fetchLikes, fetchMessages, fetchPosts, getPosts, resetFeed, sendPosts,getUsers } from "../data/provider.js";
+import { fetchLikes, fetchMessages, fetchPosts, getPosts, resetFeed, sendPosts, getUsers, deletePost } from "../data/provider.js";
 
 const mainContainer = document.querySelector(".giffygram")
 
@@ -30,9 +30,21 @@ export const postList  = () => {
            <img src ="${post.imageUrl}" alt="${post.description}">
            <br>
            Posted By ${foundUser.name} On ${new Date(post.timeStamp).toLocaleDateString()}
+           <br>
+           <button class="post__delete"
+                id="post--${post.id}">
+            Delete
+        </button>
+    </li>
         `
         }).join("")}</li>
         </ul>`
         return postHTML
  }
     
+ document.addEventListener("click", click => {
+    if (click.target.id.startsWith("post--")) {
+        const [,postId] = click.target.id.split("--")
+        deletePost(parseInt(postId))
+    }
+})
