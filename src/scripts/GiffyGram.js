@@ -21,7 +21,6 @@ export const GiffyGram = () => {
         ${footer()}`
     }
     else if(feed.chosenUser !== null) {
-        debugger
         return `<h1>Giffygram</h1>
         ${postByUser(feed.chosenUser)}
         ${footer()}`
