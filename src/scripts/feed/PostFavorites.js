@@ -1,4 +1,4 @@
-import { sendLikes, getOnlyFavorites, getUsers } from '../data/provider.js';
+import { sendLikes, getOnlyFavorites, getUsers, deletePost } from '../data/provider.js';
 
 document.addEventListener('click', click => {
     if (click.target.id.startsWith("favorite")) {
@@ -40,7 +40,7 @@ export const postFavorites  = () => {
         </div>
         <br>
         <button class="favorite__delete"
-                id="favorite--${request.id}">
+                id="favorite--${favorite.id}">
             Delete Favorite
         </button>
     </li>
@@ -53,6 +53,6 @@ export const postFavorites  = () => {
  document.addEventListener("click", click => {
     if (click.target.id.startsWith("favorite--")) {
         const [,favoriteId] = click.target.id.split("--")
-        deleteRequest(parseInt(favoriteId))
+        deletePost(parseInt(favoriteId))
     }
 })
