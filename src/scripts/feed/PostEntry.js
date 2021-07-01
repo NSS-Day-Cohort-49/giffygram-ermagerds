@@ -17,7 +17,7 @@ applicationElement.addEventListener("click", clickEvent => { //when something in
             description: description,
             userId: parseInt(localStorage.getItem("gg_user")),
             imageUrl: url,
-            timestamp: Date.now()
+            timeStamp: Date.now()
         }
         // Send the data to the API for permanent storage
         sendPosts(dataToSendToAPI)
