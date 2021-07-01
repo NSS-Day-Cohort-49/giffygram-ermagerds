@@ -1,5 +1,5 @@
-import { fetchLikes, fetchMessages, fetchPosts, getPosts, resetFeed, sendPosts, getUsers } from "../data/provider.js";
-import { postEntry } from "./PostEntry.js";
+import { fetchLikes, fetchMessages, fetchPosts, getPosts, resetFeed, sendPosts,getUsers } from "../data/provider.js";
+
 const mainContainer = document.querySelector(".giffygram")
 
 mainContainer.addEventListener("click",clickEvent => {
