@@ -1,6 +1,3 @@
-const apiURL = "http://localhost:8088"
-const applicationElement = document.querySelector(".giffygram")
-
 const API = "http://localhost:3000"
 
 const applicationState = {
@@ -63,7 +60,7 @@ export const getUsers = () => [...applicationState.users]
 export const getFeed = () => {return applicationState.feed}
 
 export const sendPosts = (userPosts) => {
-    const mainContainer = document.querySelector(".giffygram")
+    
     const fetchOptions = {
         method: "POST",
         headers: {
@@ -74,7 +71,7 @@ export const sendPosts = (userPosts) => {
     return fetch(`${API}/posts`, fetchOptions)
     .then(response => response.json())
     .then(() => {
-        mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        document.dispatchEvent(new CustomEvent("stateChanged"))
     })
 }
 
@@ -89,7 +86,7 @@ export const sendLikes = (userLikes) => {
     return fetch(`${API}/likes`, fetchOptions)
     .then(response => response.json())
     .then(() => {
-        mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        document.dispatchEvent(new CustomEvent("stateChanged"))
     })
 }
 
@@ -102,14 +99,18 @@ export const resetFeed = () => {
 }
 
 export const getOnlyFavorites = () => {
-    if(applicationState.feed.displayFavorites === true) {
+    
         const findLikes = applicationState.likes.filter(like => 
             like.userId === parseInt(localStorage.getItem("gg_user"))
         )
-        const favoritePosts = applicationState.posts.filter(post => post.id === findLikes.postId)
+        const favoritePosts = []
+        for(const like of findLikes) {
+        const thisFavorite = (applicationState.posts.find(post => post.id === like.postId))
+        favoritePosts.push(thisFavorite)
+        }
         return favoritePosts
     }
-}
+
 
 export const getPostsByUser = () => {
     if(applicationState.feed.chosenUser !== null) {
@@ -135,7 +136,7 @@ export const deleteFavorite = (id) => {
     return fetch(`${API}/likes/${id}`, {method: "DELETE"})
     .then(
         () => {
-            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            document.dispatchEvent(new CustomEvent("stateChanged"))
         }
     )
 } 
@@ -144,7 +145,7 @@ export const deletePost = (id) => {
     return fetch(`${API}/posts/${id}`, {method: "DELETE"})
     .then(
         () => {
-            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            document.dispatchEvent(new CustomEvent("stateChanged"))
         }
     )
 }

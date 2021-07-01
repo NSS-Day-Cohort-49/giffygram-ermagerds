@@ -1,25 +1,38 @@
-import { getPosts } from "/scripts/data/provider.js"
+import { fetchLikes, fetchMessages, fetchPosts, getPosts, resetFeed, sendPosts,getUsers } from "../data/provider.js";
 
-export const PostList = () => {
+const mainContainer = document.querySelector(".giffygram")
 
-const posts = getPosts() 
+mainContainer.addEventListener("click",clickEvent => {
+    if(clickEvent.target.name === "giffygram") {
+        resetFeed()
+        fetchLikes()
+        fetchMessages()
+        fetchPosts()
+        document.dispatchEvent(new CustomEvent("stateChanged"))
+    }
+})
 
-const formatDate= (timestamp) => {
-    const date = new Date(timestamp)
-    const formattedDate = date.toLocaleDateString()
-    return formattedDate
-} 
+export const postList  = () => {
+    const posts = getPosts()
+    const users = getUsers()
 
-const postHTML = `<ul>${posts.map(
+    const postHTML = `<ul>${posts.map(
+ 
+        (post) => {
 
-    (post) => {
-        
-    return `<li><img src ="${post.imageUrl}" alt="${post.description}">
-    <br>
-    ${formatDate(post.timeStamp)}`
-    }).join("")}</li>
-    </ul>`
-    return postHTML
-}
-
-
+            const foundUser = users.find(
+                (user) => {
+                    return user.id === parseInt(post.userId)
+                }
+            )
+           return `<li>
+           ${post.title}<br>
+           <img src ="${post.imageUrl}" alt="${post.description}">
+           <br>
+           Posted By ${foundUser.name} On ${new Date(post.timeStamp).toLocaleDateString()}
+        `
+        }).join("")}</li>
+        </ul>`
+        return postHTML
+ }
+    

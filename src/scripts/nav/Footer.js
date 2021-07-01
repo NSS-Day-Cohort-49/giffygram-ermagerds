@@ -3,20 +3,21 @@ import { setChosenUser, setDisplayFavorites, getUsers, getFeed, resetFeed } from
 document.addEventListener("change", (event) => {
     
     if(event.target.name === "chooseUser") {
-        debugger
+        
         if (event.target.value === "All Users"){
             resetFeed()
             document.dispatchEvent(new CustomEvent("stateChanged"))
             return
         }
         else {
+            
         const users = getUsers()
         const chosenUser = event.target.value
         const userObj = users.find(user => user.name === chosenUser)
       setChosenUser(userObj.id)
-      document.dispatchEvent(new CustomEvent("stateChanged"))
+        document.dispatchEvent(new CustomEvent("stateChanged"))
     }}
-  })
+})
 
 document.addEventListener("click", (event) => {
     if(event.target.name === "displayOnlyFavorites") {
@@ -26,8 +27,7 @@ document.addEventListener("click", (event) => {
       }
     })
 
-
-export const Footer = () => {
+export const footer = () => {
 
 const users = getUsers()
 const feed = getFeed()
@@ -39,7 +39,7 @@ if(feed.displayFavorites === true) {
     ${users.map(
     
         (user) => {
-            return `<option id="${user.id}"value="${user.name}"name="chosenUserName" >${user.name}</option>`
+            return `<option id="interface-output"value="${user.name}"name="chosenUserName" >${user.name}</option>`
         }
     ).join("")
 }
@@ -56,7 +56,7 @@ if(feed.displayFavorites === false) {
     ${users.map(
     
         (user) => {
-            return `<option id="${user.id}"value="${user.name}"name="chosenUserName">${user.name}</option>`
+            return `<option id="interface-output"value="${user.name}"name="chosenUserName">${user.name}</option>`
         }
     ).join("")
 }
