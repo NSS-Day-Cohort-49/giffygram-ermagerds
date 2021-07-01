@@ -1,7 +1,4 @@
-import { resetFeed, getMessages, setMessageDisplay } from "../data/provider.js";
-
-import { messageList } from "../message/DisplayMessage.js";
-
+import { resetFeed, getMessages, setDisplayMessages} from "../data/provider.js";
 
 
 document.addEventListener("click", event => {
@@ -13,10 +10,12 @@ document.addEventListener("click", event => {
 
 document.addEventListener("click", event => {
     if (event.target.classList.contains("notification__count")) {
-        setMessageDisplay(true)
+        setDisplayMessages()
         document.dispatchEvent(new CustomEvent("stateChanged"))
     }
 })
+
+
 
 document.addEventListener("click", event => {
     if (event.target.id === "home") {
@@ -29,8 +28,11 @@ document.addEventListener("click", event => {
 
 
 export const NavBar = () => {
-    const inbox = getMessages()
-
+    const messages = getMessages()
+    const filteredUser = messages.filter(message => message.recipientId === parseInt(localStorage.getItem("gg_user")))
+    const inbox = filteredUser.filter(message => message.read !== true)
+    const unread = inbox.length
+    
 return `
 <nav class="navigation">
     <div class="navigation__icon navigation__item">
@@ -39,13 +41,13 @@ return `
     <div class="navigation__name navigation__item">
          GiffyGram!
     </div>
+    <div class="navigation__item navigation__message">
     <div class="navigation__icon navigation__item">
         <img src="https://www.pinclipart.com/picdir/middle/69-695903_pen-signature-svg-png-icon-free-download-455083.png" id="draftmessage" />
     </div>
-    <div class="navigation__item navigation__message">
-        <div class="notification__count">
-            ${inbox.length}
-        </div>
+    <div class="notification__count">
+     ${unread}
+    </div>
     </div>
     <div class="navigation__item navigation__logout">
                 <button id="logout">Logout</button>
