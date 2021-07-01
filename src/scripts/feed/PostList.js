@@ -1,4 +1,4 @@
-import { fetchLikes, fetchMessages, fetchPosts, getPosts, resetFeed, sendPosts,getUsers } from "../data/provider.js";
+import { fetchLikes, fetchMessages, fetchPosts, getPosts, resetFeed, sendPosts, getUsers } from "../data/provider.js";
 import { postEntry } from "./PostEntry.js";
 const mainContainer = document.querySelector(".giffygram")
 

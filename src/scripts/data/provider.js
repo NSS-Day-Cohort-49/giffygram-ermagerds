@@ -166,3 +166,6 @@ export const markAllMessages = () => {
         )}
     }
 }
+export const setMessageDisplay = () => {
+    applicationState.feed.displayMessages = true
+}
