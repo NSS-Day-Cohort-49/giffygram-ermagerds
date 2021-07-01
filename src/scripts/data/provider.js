@@ -1,6 +1,3 @@
-const apiURL = "http://localhost:8088"
-const applicationElement = document.querySelector(".giffygram")
-
 const API = "http://localhost:3000"
 
 const applicationState = {
@@ -102,14 +99,18 @@ export const resetFeed = () => {
 }
 
 export const getOnlyFavorites = () => {
-    if(applicationState.feed.displayFavorites === true) {
+    
         const findLikes = applicationState.likes.filter(like => 
             like.userId === parseInt(localStorage.getItem("gg_user"))
         )
-        const favoritePosts = applicationState.posts.filter(post => post.id === findLikes.postId)
+        const favoritePosts = []
+        for(const like of findLikes) {
+        const thisFavorite = (applicationState.posts.find(post => post.id === like.postId))
+        favoritePosts.push(thisFavorite)
+        }
         return favoritePosts
     }
-}
+
 
 export const getPostsByUser = () => {
     if(applicationState.feed.chosenUser !== null) {
@@ -126,7 +127,7 @@ export const setDisplayFavorites = () => {
     if(applicationState.feed.displayFavorites === true) {
         applicationState.feed.displayFavorites = false;
     } 
-    if(applicationState.feed.displayFavorites === false) {
+    else if(applicationState.feed.displayFavorites === false) {
         applicationState.feed.displayFavorites = true;
     }
 }
