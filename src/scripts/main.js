@@ -1,6 +1,7 @@
 import { GiffyGram } from "./GiffyGram.js"
 import { LoginForm } from "./auth/Login.js"
 import { fetchLikes, fetchMessages, fetchPosts, fetchUsers } from "./data/provider.js"
+import { renderDisplayMessage } from "./feed/Message.js"
 
 const applicationElement = document.querySelector(".giffygram")
 
@@ -24,4 +25,13 @@ customEvent => {
 
 })
 
+
 renderApp()
+
+
+document.addEventListener("displayMessage",
+customEvent => {
+
+    renderDisplayMessage()
+
+})
