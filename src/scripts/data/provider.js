@@ -63,7 +63,7 @@ export const getUsers = () => [...applicationState.users]
 export const getFeed = () => {return applicationState.feed}
 
 export const sendPosts = (userPosts) => {
-    const mainContainer = document.querySelector(".giffygram")
+    
     const fetchOptions = {
         method: "POST",
         headers: {
@@ -74,7 +74,7 @@ export const sendPosts = (userPosts) => {
     return fetch(`${API}/posts`, fetchOptions)
     .then(response => response.json())
     .then(() => {
-        mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        document.dispatchEvent(new CustomEvent("stateChanged"))
     })
 }
 
@@ -89,7 +89,7 @@ export const sendLikes = (userLikes) => {
     return fetch(`${API}/likes`, fetchOptions)
     .then(response => response.json())
     .then(() => {
-        mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        document.dispatchEvent(new CustomEvent("stateChanged"))
     })
 }
 
@@ -135,7 +135,7 @@ export const deleteFavorite = (id) => {
     return fetch(`${API}/likes/${id}`, {method: "DELETE"})
     .then(
         () => {
-            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            document.dispatchEvent(new CustomEvent("stateChanged"))
         }
     )
 } 
@@ -144,7 +144,7 @@ export const deletePost = (id) => {
     return fetch(`${API}/posts/${id}`, {method: "DELETE"})
     .then(
         () => {
-            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            document.dispatchEvent(new CustomEvent("stateChanged"))
         }
     )
 }
