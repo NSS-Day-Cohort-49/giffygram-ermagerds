@@ -16,7 +16,7 @@ export const postList  = () => {
     const posts = getPosts()
     const users = getUsers()
 
-    const postHTML = `<ul>${posts.map(
+    const postHTML = `<ul class ="giffygram__feed">${posts.map(
         
  
         (post) => {

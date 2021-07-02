@@ -95,7 +95,8 @@ export const resetFeed = () => {
     applicationState.feed = {
         chosenUser: null,
         displayFavorites: false,
-        displayMessages: false
+        displayMessages: false,
+        displayAuthor: null
     }
 }
 
