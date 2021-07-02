@@ -11,6 +11,11 @@ export const GiffyGram = () => {
 
     // Show main main UI
     const feed = getFeed()
+    if (feed.displayAuthor !== null) {
+        return `
+        ${NavBar()}
+        ${AuthorPage(feed.displayAuthor)}
+    }
     if (feed.displayMessages === true) {
         return `${NavBar()}
         ${renderDisplayMessage()}`
