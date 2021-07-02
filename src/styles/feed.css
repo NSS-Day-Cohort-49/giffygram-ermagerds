@@ -6,21 +6,21 @@
     justify-content: center;
 }
 .button__unfav {
-    background: url("/src/images/favorite-star-yellow.svg") no-repeat;
+    background: url("/images/favorite-star-yellow.svg") no-repeat;
     cursor:pointer;
     border:none;
     width:50px;
     height:50px;
 }
 .button__fav {
-    background: url("/src/images/favorite-star-blank.svg") no-repeat;
+    background: url("/images/favorite-star-blank.svg") no-repeat;
     cursor:pointer;
     border:none;
     width:50px;
     height:50px;
 }
 .button__delete {
-    background: url("/src/images/block.svg") no-repeat;
+    background: url("/images/block.svg") no-repeat;
     cursor:pointer;
     border:none;
     width:50px;
