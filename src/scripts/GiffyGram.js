@@ -25,18 +25,21 @@ export const GiffyGram = () => {
         ${NavBar()}
         ${postEntry()}
         ${postList()}
+        <br>
         ${footer()}`
         }
     else if(feed.displayFavorites === true) {
         return `
         ${NavBar()}
         ${postFavorites()}
+        <br>
         ${footer()}`
     }
     else if(feed.chosenUser !== null) {
         return `
         ${NavBar()}
         ${postByUser(feed.chosenUser)}
+        <br>
         ${footer()}`
     }
 }

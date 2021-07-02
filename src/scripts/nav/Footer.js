@@ -33,7 +33,7 @@ const users = getUsers()
 const feed = getFeed()
 
 if(feed.displayFavorites === true) {
-    const footerHTML = `<select class="chosenUser" name="chooseUser"> 
+    const footerHTML = `<section class = "footer"><select class="footer__item" name="chooseUser"> 
                         <option selected disabled> Filter By Poster</option>
                         <option name = "allUsers" value="allUsers">All Users</option>
     ${users.map(
@@ -44,12 +44,12 @@ if(feed.displayFavorites === true) {
     ).join("")
 }
 </select>
-<input type ="checkbox" id="setDisplayFavorites" class="favoritesFilter" name="displayOnlyFavorites" checked>Display Only Favorites`
+<input type ="checkbox" id="setDisplayFavorites" class="footer__item" name="displayOnlyFavorites" checked>Display Only Favorites</section>`
 return footerHTML
 }
 
 if(feed.displayFavorites === false) {
-    const footerHTML = `<select class="chosenUser" name="chooseUser">
+    const footerHTML = `<section class = "footer"> <select class="footer__item" name="chooseUser">
                         <option selected disabled> Filter By Poster</option>
                         <option name = "allUsers">All Users</option>
     
@@ -61,7 +61,7 @@ if(feed.displayFavorites === false) {
     ).join("")
 }
 </select>
-<input type ="checkbox" id="setDisplayFavorites" class="favoritesFilter" name="displayOnlyFavorites">Display Only Favorites`
+<input type ="checkbox" id="setDisplayFavorites" class="footer__item" name="displayOnlyFavorites">Display Only Favorites</section>`
 return footerHTML
 }
 }
