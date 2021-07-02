@@ -1,4 +1,4 @@
-import { setChosenUser, setDisplayFavorites, getUsers, getFeed, resetFeed } from "/scripts/data/provider.js"
+import { setChosenUser, setDisplayFavorites, getUsers, getFeed, resetFeed } from "../data/provider.js"
 
 document.addEventListener("change", (event) => {
     
