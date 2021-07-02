@@ -5,7 +5,8 @@ const applicationState = {
     feed: {
         chosenUser: null,
         displayFavorites: false,
-        displayMessages: false
+        displayMessages: false,
+        displayAuthor: null
     },
     posts: [],
     likes: [],
@@ -122,6 +123,9 @@ export const getPostsByUser = () => {
 
 export const setChosenUser = (chosenUserId) => {
     applicationState.feed.chosenUser = chosenUserId
+}
+export const setDisplayAuthor = (displayAuthorId) => {
+    applicationState.feed.displayAuthor = displayAuthorId
 }
 export const setDisplayFavorites = () => {
     if(applicationState.feed.displayFavorites === true) {
