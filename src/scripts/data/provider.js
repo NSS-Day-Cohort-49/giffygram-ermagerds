@@ -170,3 +170,12 @@ export const markAllMessages = () => {
         )}
     }
 }
+
+export const setDisplayMessages = () => {
+    if(applicationState.feed.displayMessages === true) {
+        applicationState.feed.displayMessages = false;
+    } 
+    else if(applicationState.feed.displayMessages === false) {
+        applicationState.feed.displayMessages = true;
+    }
+}

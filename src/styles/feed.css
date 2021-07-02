@@ -1,6 +1,28 @@
 .giffygram__feed {
-    padding: 7rem 0;
+    position:relative;
+    padding: 0rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+.button__unfav {
+    background: url("/src/images/favorite-star-yellow.svg") no-repeat;
+    cursor:pointer;
+    border:none;
+    width:50px;
+    height:50px;
+}
+.button__fav {
+    background: url("/src/images/favorite-star-blank.svg") no-repeat;
+    cursor:pointer;
+    border:none;
+    width:50px;
+    height:50px;
+}
+.button__delete {
+    background: url("/src/images/block.svg") no-repeat;
+    cursor:pointer;
+    border:none;
+    width:50px;
+    height:50px;
 }

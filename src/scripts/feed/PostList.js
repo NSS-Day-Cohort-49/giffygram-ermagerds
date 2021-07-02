@@ -17,6 +17,7 @@ export const postList  = () => {
     const users = getUsers()
 
     const postHTML = `<ul>${posts.map(
+        
  
         (post) => {
 
@@ -41,6 +42,7 @@ export const postList  = () => {
         </ul>`
         return postHTML
  }
+<<<<<<< HEAD
     
  document.addEventListener("click", click => {
     if (click.target.id.startsWith("post--")) {
@@ -48,3 +50,7 @@ export const postList  = () => {
         deletePost(parseInt(postId))
     }
 })
+=======
+
+
+>>>>>>> main
