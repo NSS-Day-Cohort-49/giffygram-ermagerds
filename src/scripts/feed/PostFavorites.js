@@ -1,25 +1,6 @@
 import { sendLikes, getOnlyFavorites, getUsers, deleteFavorite, getLikes, getPosts, deletePost } from '../data/provider.js';
 
-// document.addEventListener('click', click => {
-//     if (click.target.id.startsWith("favorite")) {
-//         const [,favoriteId] = click.target.id.split('--')
-//         sendLikes(parseInt(favoriteId))
-//         document.dispatchEvent(new CustomEvent("stateChanged"))
-//     }
-// }
-// )
-
-// document.addEventListener('click', click => {
-//     if (click.target.id.startsWith('blockPost--')) {
-//         const [,postId] = click.target.id.split('--')
-//         deletePost(parseInt(postId))
-//         document.dispatchEvent(new CustomEvent("stateChanged"))
-//     }
-// }
-// )
-
-
-document.addEventListener("click", (event) => {
+addEventListener("click", (event) => {
     if(event.target.name === "unfavButton") {
     const postId = parseInt(event.target.id)
     const likes = getLikes()

@@ -1,4 +1,4 @@
-import { getPosts, getUsers, getLikes, deletePost, deleteFavorite, sendLikes } from "../data/provider.js";
+import { getPosts, getUsers, getLikes, deletePost, deleteFavorite, sendLikes, setDisplayAuthor } from "../data/provider.js";
 
 document.addEventListener("click", (event) => {
     if(event.target.name === "unfavButton") {
@@ -40,6 +40,18 @@ document.addEventListener("click", (event) => {
         }
     })
 
+document.addEventListener("click", (event) => {
+    if(event.target.id === "fakeLink" ) {
+    const thisAuthor = event.target.innerHTML.trim()
+    const users = getUsers()
+    const user = users.find(user => user.name == thisAuthor)
+    const userId = user.id
+    setDisplayAuthor(parseInt(userId))
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+
+    }
+    })
+
 export const postByUser = (filterUser) => {
     const users = getUsers()
     const posts = getPosts()
@@ -48,7 +60,7 @@ export const postByUser = (filterUser) => {
     const userPosts = posts.filter(post =>
         post.userId === thisUser.id)
 
-        let postHTML = `<section class = "giffygram__feed"<ul class = giffygram__feed">`
+        let postHTML = `<ul class = "giffygram__feed">`
 
        
             for(const userPost of userPosts) {
@@ -59,13 +71,12 @@ export const postByUser = (filterUser) => {
                 ${userPost.title}<br>
                 <img src ="${userPost.imageUrl}" alt="${userPost.description}">
                 <br>
-                Posted By ${foundUser.name} On ${new Date(userPost.timeStamp).toLocaleDateString()}
+                Posted By <div class = fakeLink id = "fakeLink" name="${userPost.authorId}">${foundUser.name}</div> On ${new Date(userPost.timeStamp).toLocaleDateString()}
                 <br><button class = "button__unfav" name="unfavButton" id="${userPost.id}"></button>`
                 if (foundUser.id === parseInt(localStorage.getItem("gg_user"))){
                     postHTML +=
                 `<button class = "button__delete" name="deleteButton" id="${userPost.id}"></button>`
             }
-               postHTML += `</ul></section>` 
             }
 
             else {
@@ -73,14 +84,15 @@ export const postByUser = (filterUser) => {
             ${userPost.title}<br>
             <img src ="${userPost.imageUrl}" alt="${userPost.description}">
             <br>
-            Posted By ${foundUser.name} On ${new Date(userPost.timeStamp).toLocaleDateString()}
+            Posted By <div class = fakeLink id ="fakeLink" name= "${userPost.authorId}" name="fakeLink">${foundUser.name} </div>On ${new Date(userPost.timeStamp).toLocaleDateString()}
             <br><button class = "button__fav" name="favButton" id="${userPost.id}"></button>`
                 if (foundUser.id === parseInt(localStorage.getItem("gg_user")))
                 {
                     postHTML +=
                 `<button class = "button__delete" name="deleteButton" id="${userPost.id}"></button>`
                 }
-            postHTML += `</ul></section>`
+
         }}}
+        postHTML += `</ul>`
         return postHTML
 }
