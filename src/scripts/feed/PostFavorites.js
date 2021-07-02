@@ -49,7 +49,6 @@ export const postFavorites  = () => {
     const favorites = getOnlyFavorites()
     const users = getUsers()
         let favoritesHTML = `<section class = "giffygram__favorites"><ul class = "giffygram__favorites>`
-debugger
             for (const favorite of favorites) {
                 const foundUser = users.find(user => user.id ===favorite.userId)
 
@@ -60,7 +59,7 @@ debugger
            Posted By ${foundUser.name} On ${new Date(favorite.timeStamp).toLocaleDateString()}
         <br>
         <button class="button__unfav" name="unfavButton"
-                id="blockPost--${favorite.id}"></button>`
+                id="${favorite.id}"></button>`
                 if (foundUser.id === parseInt(localStorage.getItem("gg_user"))) {
                     favoritesHTML += `
         <button class="button__delete" name="deleteButton" id="${favorite.id}"></button>`
