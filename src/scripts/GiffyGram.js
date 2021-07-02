@@ -31,12 +31,8 @@ export const GiffyGram = () => {
         ${footer()}`
     }
     else if(feed.chosenUser !== null) {
-<<<<<<< HEAD
-        return `<h1>Giffygram</h1>
-=======
         return `
         ${NavBar()}
->>>>>>> main
         ${postByUser(feed.chosenUser)}
         <br>
         ${footer()}`
