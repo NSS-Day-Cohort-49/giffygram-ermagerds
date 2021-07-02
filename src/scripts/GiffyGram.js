@@ -13,16 +13,19 @@ export const GiffyGram = () => {
         return `<h1>Giffygram</h1>
         ${postEntry()}
         ${postList()}
+        <br>
         ${footer()}`
         }
     else if(feed.displayFavorites === true) {
         return `<h1>Giffygram</h1>
         ${postFavorites()}
+        <br>
         ${footer()}`
     }
     else if(feed.chosenUser !== null) {
         return `<h1>Giffygram</h1>
         ${postByUser(feed.chosenUser)}
+        <br>
         ${footer()}`
     }
 }

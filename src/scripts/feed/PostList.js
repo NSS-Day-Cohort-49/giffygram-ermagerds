@@ -17,6 +17,7 @@ export const postList  = () => {
     const users = getUsers()
 
     const postHTML = `<ul>${posts.map(
+        
  
         (post) => {
 
@@ -35,4 +36,5 @@ export const postList  = () => {
         </ul>`
         return postHTML
  }
-    
+
+
